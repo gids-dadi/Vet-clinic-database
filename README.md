@@ -1,6 +1,6 @@
 # Create animal table
 
-#desccription
+#Description
 table of vet_clinic database for animals
 
 ## Getting Started
@@ -15,8 +15,8 @@ This repository includes files with plain SQL that can be used to recreate a dat
 
 👤 **Gideon Dadi**
 
--Linkedin [@GideonDadi](https://www.linkedin.com/feed/)
--GitHub: [@gids_dadi](https://github.com/gids-dadi)
+-Linkedin [@GideonDadi](https://www.linkedin.com/feed/)<br>
+-GitHub: [@gids_dadi](https://github.com/gids-dadi)<br>
 -Twitter: [@Dadi_AG](https://twitter.com/Dadi_AG)
 
 ## 🤝 Contributing
