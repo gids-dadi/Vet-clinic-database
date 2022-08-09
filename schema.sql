@@ -5,6 +5,7 @@
  NAME                       CHAR(50)     NOT NULL,
  DATE_OF_BIRTH       DATE            NOT NULL,
  ESCAPE_ATTEMPTS   INT              NOT NULL,
- NEUTERED            VARCHAR(1)    NOT NULL,
+ NEUTERED                 BOOLEAN     NOT NULL,
  WEIGHT_KG              DECIMAL
  );
+ 

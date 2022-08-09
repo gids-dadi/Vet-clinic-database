@@ -7,7 +7,7 @@
 SELECT name FROM animals WHERE date_of_birth BETWEEN '2016-01-01' AND '2019-12-31';
 
 //Neutered and have less than 3 escape attempts
-SELECT name FROM animals WHERE neutered = 'T' AND escape_attempts < 3;
+SELECT name FROM animals WHERE neutered = TRUE AND escape_attempts < 3;
 
 
 //date of birth of all animals named either "Agumon" or "Pikachu".
@@ -18,7 +18,7 @@ SELECT date_of_birth FROM animals WHERE name='Agumon' OR name='Pikachu';
 SELECT name, escape_attempts from animals WHERE weight_kg > 10.5;
 
 //all animals that are neutered.
-SELECT * FROM animals WHERE neutered = 'T';
+SELECT * FROM animals WHERE neutered = TRUE;
 
 //all animals not named Gabumon
 SELECT * FROM animals WHERE name != 'Gabumon';
