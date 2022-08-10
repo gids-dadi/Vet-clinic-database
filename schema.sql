@@ -6,6 +6,7 @@
  DATE_OF_BIRTH       DATE            NOT NULL,
  ESCAPE_ATTEMPTS   INT              NOT NULL,
  NEUTERED                 BOOLEAN     NOT NULL,
- WEIGHT_KG              DECIMAL
+ WEIGHT_KG              DECIMAL,
+SPECIES                      VARCHAR
  );
  
