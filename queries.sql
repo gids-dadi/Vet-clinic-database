@@ -40,17 +40,28 @@ SELECT AVG(weight_kg) FROM animals;
 
 
 //Who escapes the most, neutered or not neutered animals?
-SELECT MAX(escape_attempts) as max_escapes FROM animals WHERE neutered = 'true';
-SELECT MAX(escape_attempts) as max_escapes FROM animals WHERE neutered = 'false';
+ SELECT neutered, MAX(escape_attempts)
+ FROM animals
+ GROUP BY neutered;
 
 
 
-What is the minimum and maximum weight of each type of animal?
-SELECT MAX(weight_kg) as max_Weigth FROM animals WHERE species = 'pokemon';
-SELECT MIN(weight_kg) as min_Weigth FROM animals WHERE species = 'pokemon';
+// What is the minimum and maximum weight of each type of animal?
 
-SELECT MAX(weight_kg) as max_Weigth FROM animals WHERe species = 'digimon';
-SELECT MIN(weight_kg) as min_Weigth FROM animals WHERe species = 'digimon';
+ SELECT 
+	species, 
+	MAX(weight_kg),
+	MIN(weight_kg)
+	FROM
+	animals
+	GROUP BY species;
 
 //What is the average number of escape attempts per animal type of those born between 1990 and 2000?
-SELECT AVG(escape_attempts) FROM animals WHERE species = 'pokemon' AND date_of_birth BETWEEN '1990-01-01' AND '2000-01-01';
+
+ SELECT 
+	species, 
+	AVG(escape_attempts)
+	FROM
+	animals
+	WHERE date_of_birth BETWEEN '1990-01-01' AND '2000-12-31'
+	GROUP BY species;
