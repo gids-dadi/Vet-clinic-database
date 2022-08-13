@@ -65,3 +65,57 @@ SELECT AVG(weight_kg) FROM animals;
 	animals
 	WHERE date_of_birth BETWEEN '1990-01-01' AND '2000-12-31'
 	GROUP BY species;
+
+	//What animals belong to Melody Pond?
+SELECT animals.name AS animal_name, owners.full_name AS owner
+FROM animals
+LEFT JOIN owners
+ ON owner_id = owners.id
+WHERE owners.full_name = 'Melody Pond';
+
+//List of all animals that are pokemon (their type is Pokemon)
+SELECT animals.name
+FROM animals 
+LEFT JOIN species
+ON species_id = species.id
+WHERE animals.species_id = 1; 
+
+
+SELECT owners.full_name, animals.name
+FROM animals
+RIGHT JOIN owners
+ON owner_id = owners.id;
+
+
+//How many animals are there per species?
+SELECT species.name,
+COUNT(*) FROM animals
+RIGHT JOIN species
+ON species_id = species.id
+GROUP BY species.name;
+
+
+//List all Digimon owned by Jennifer Orwell.
+SELECT species.name, owners.full_name,	
+ COUNT(*) FROM species
+RIGHT JOIN owners
+ON species.id = owners.id
+WHERE owners.full_name = 'Jennifer Orwell'
+GROUP BY species.name, owners.full_name;
+
+
+SELECT animals.name, owners.full_name,
+COUNT(*) FROM animals
+RIGHT JOIN owners
+ON owners.full_name = 'Dean Winchester'
+WHERE escape_attempts = 0
+GROUP BY animals.name, owners.full_name;
+
+
+//Who owns the most animals
+SELECT owners.full_name,
+COUNT(*) FROM owners
+RIGHT JOIN animals
+ON owner_id = owners.id
+GROUP BY owners.full_name;
+
