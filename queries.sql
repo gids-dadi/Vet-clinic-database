@@ -65,3 +65,133 @@ SELECT AVG(weight_kg) FROM animals;
 	animals
 	WHERE date_of_birth BETWEEN '1990-01-01' AND '2000-12-31'
 	GROUP BY species;
+
+	//What animals belong to Melody Pond?
+SELECT animals.name AS animal_name, owners.full_name AS owner
+FROM animals
+LEFT JOIN owners
+ ON owner_id = owners.id
+WHERE owners.full_name = 'Melody Pond';
+
+//List of all animals that are pokemon (their type is Pokemon)
+SELECT animals.name
+FROM animals 
+LEFT JOIN species
+ON species_id = species.id
+WHERE animals.species_id = 1; 
+
+
+SELECT owners.full_name, animals.name
+FROM animals
+RIGHT JOIN owners
+ON owner_id = owners.id;
+
+
+//How many animals are there per species?
+SELECT species.name,
+COUNT(*) FROM animals
+RIGHT JOIN species
+ON species_id = species.id
+GROUP BY species.name;
+
+
+//List all Digimon owned by Jennifer Orwell.
+SELECT species.name, owners.full_name,	
+ COUNT(*) FROM species
+RIGHT JOIN owners
+ON species.id = owners.id
+WHERE owners.full_name = 'Jennifer Orwell'
+GROUP BY species.name, owners.full_name;
+
+
+SELECT animals.name, owners.full_name,
+COUNT(*) FROM animals
+RIGHT JOIN owners
+ON owners.full_name = 'Dean Winchester'
+WHERE escape_attempts = 0
+GROUP BY animals.name, owners.full_name;
+
+
+//Who owns the most animals
+SELECT owners.full_name,
+COUNT(*) FROM owners
+RIGHT JOIN animals
+ON owner_id = owners.id
+GROUP BY owners.full_name;
+
+
+//Who was the last animal seen by William Tatcher?
+SELECT animals.name, visits.date_of_visit
+FROM animals
+INNER JOIN visits
+ON animals.id = visits.vet_id
+WHERE vet_id = 1
+ORDER BY visits.date_of_visit DESC LIMIT 1;
+
+
+//How many different animals did Stephanie Mendez see?
+SELECT species.name,
+COUNT(*)
+FROM species
+INNER JOIN vets
+ON species.id = vets.id
+GROUP BY species.name;
+
+//List all vets and their specialties, including vets with no specialties
+
+SELECT vets.name, species.name
+FROM vets
+INNER JOIN species
+ON vets.id = species.id;
+
+
+SELECT animals.name
+FROM animals
+INNER JOIN visits
+ON animals.id = visits.id;
+
+
+
+
+SELECT animals.name  
+ FROM animals
+INNER JOIN visits
+ON animal_id = vet_id 
+WHERE vet_id= '3' 
+AND visits.date_of_visit BETWEEN '2020-4-1' AND '2020-8-30';
+
+
+SELECT animals.name,
+COUNT(*)
+FROM vets
+INNER JOIN animals
+ON vets.id = vets.id
+GROUP BY animals.name;
+
+
+SELECT animals.name, visits.date_of_visit
+FROM animals
+INNER JOIN visits
+ON animals.id = vet_id
+ORDER BY visits.date_of_visit LIMIT 1;
+
+SELECT animals.name, visits.vet_id, visits.date_of_visit
+FROM animals 
+INNER JOIN visits 
+ON animals.id = vet_id
+ORDER BY visits.date_of_visit LIMIT 1;
+
+
+SELECT 
+COUNT(*) 
+FROM specialty 
+INNER JOIN visits
+ON specialty_id = specialty.vet_id
+WHERE specialty_id != specialty.vet_id;
+
+
+SELECT *,
+COUNT(*)
+FROM specialty
+WHERE specialty.vet_id = '2'
+GROUP BY specialty.vet_id, specialty.specialty_id ORDER BY COUNT(*) DESC LIMIT 1;
