@@ -119,3 +119,79 @@ RIGHT JOIN animals
 ON owner_id = owners.id
 GROUP BY owners.full_name;
 
+
+//Who was the last animal seen by William Tatcher?
+SELECT animals.name, visits.date_of_visit
+FROM animals
+INNER JOIN visits
+ON animals.id = visits.vet_id
+WHERE vet_id = 1
+ORDER BY visits.date_of_visit DESC LIMIT 1;
+
+
+//How many different animals did Stephanie Mendez see?
+SELECT species.name,
+COUNT(*)
+FROM species
+INNER JOIN vets
+ON species.id = vets.id
+GROUP BY species.name;
+
+//List all vets and their specialties, including vets with no specialties
+
+SELECT vets.name, species.name
+FROM vets
+INNER JOIN species
+ON vets.id = species.id;
+
+
+SELECT animals.name
+FROM animals
+INNER JOIN visits
+ON animals.id = visits.id;
+
+
+
+
+SELECT animals.name  
+ FROM animals
+INNER JOIN visits
+ON animal_id = vet_id 
+WHERE vet_id= '3' 
+AND visits.date_of_visit BETWEEN '2020-4-1' AND '2020-8-30';
+
+
+SELECT animals.name,
+COUNT(*)
+FROM vets
+INNER JOIN animals
+ON vets.id = vets.id
+GROUP BY animals.name;
+
+
+SELECT animals.name, visits.date_of_visit
+FROM animals
+INNER JOIN visits
+ON animals.id = vet_id
+ORDER BY visits.date_of_visit LIMIT 1;
+
+SELECT animals.name, visits.vet_id, visits.date_of_visit
+FROM animals 
+INNER JOIN visits 
+ON animals.id = vet_id
+ORDER BY visits.date_of_visit LIMIT 1;
+
+
+SELECT 
+COUNT(*) 
+FROM specialty 
+INNER JOIN visits
+ON specialty_id = specialty.vet_id
+WHERE specialty_id != specialty.vet_id;
+
+
+SELECT *,
+COUNT(*)
+FROM specialty
+WHERE specialty.vet_id = '2'
+GROUP BY specialty.vet_id, specialty.specialty_id ORDER BY COUNT(*) DESC LIMIT 1;
