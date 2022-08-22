@@ -62,3 +62,8 @@ ANIMAL_ID INT,
 VET_ID INT,
 DATE_OF_VISIT DATE
 );
+
+
+CREATE INDEX animal_index ON visits(animal_id ASC);
+CREATE INDEX vet_id ON visits(vet_id);
+CREATE INDEX owner_email ON visits(owner_email);
