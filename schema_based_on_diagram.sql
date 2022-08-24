@@ -14,7 +14,7 @@ CREATE TABLE medical_histories (
     id INT GENERATED ALWAYS AS IDENTITY,
     admitted_at TIMESTAMP,
     status VARCHAR(50),
-    CONSTRAINT fk_patients FOREIGN KEY(patient_id) REFERENCES patients(id),
+     patient_id integer REFERENCES patients(id),
     PRIMARY KEY (id)
 );
 
@@ -24,18 +24,7 @@ CREATE TABLE invoices (
     total_amount DECIMAL,
     generated_at TIMESTAMP,
     payed_at TIMESTAMP,
-    CONSTRAINT fk_medical_history FOREIGN KEY(medical_history_id) REFERENCES medical_histories (id), 
-    PRIMARY KEY (id)
-);
-
--- create invoice_items table
-CREATE TABLE invoice_items (
-    id INT GENERATED ALWAYS AS IDENTITY,
-    unit_price DECIMAL,
-    quantity INT,
-    total_price DECIMAL,
-    CONSTRAINT fk_invoices FOREIGN KEY(invoice_id) REFERENCES invoices (id),
-    CONSTRAINT fk_treatment FOREIGN KEY(treatment_id) REFERENCES treatments (id)
+    medical_history_id integer REFERENCES medical_histories (id), 
     PRIMARY KEY (id)
 );
 
@@ -47,6 +36,17 @@ CREATE TABLE treatments (
     PRIMARY KEY (id)
 );
 
+-- create invoice_items table
+CREATE TABLE invoice_items (
+    id INT GENERATED ALWAYS AS IDENTITY,
+    unit_price DECIMAL,
+    quantity INT,
+    total_price DECIMAL,
+   invoice_id integer REFERENCES invoices(id),
+   treatment_id integer REFERENCES treatments(id), 
+    PRIMARY KEY (id)
+);
+
 -- create join table between medical_histories and treatments tables
 CREATE TABLE medical_histories_treatments (
     id INT GENERATED ALWAYS AS IDENTITY,
@@ -54,3 +54,9 @@ CREATE TABLE medical_histories_treatments (
     medical_history_id INT REFERENCES medical_histories (id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
+
+--create INDEX tables
+CREATE INDEX ON medical_histories (patient_id);
+CREATE INDEX ON invoices (medical_history_id);
+CREATE INDEX ON invoice_items (invoice_id);
+CREATE INDEX ON invoice_items (treatment_id);
